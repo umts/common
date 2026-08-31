@@ -2,13 +2,7 @@ import { defineConfig } from "oxlint";
 
 export default defineConfig({
   $schema: "./node_modules/oxlint/configuration_schema.json",
-  ignorePatterns: [
-    ".bundle/**",
-    "app/assets/builds/**",
-    "app/javascript/controllers/index.js",
-    "public/assets/**",
-    "vendor/assets/**",
-  ],
+  ignorePatterns: ["app/javascript/controllers/index.js", "vendor/assets/**"],
   plugins: ["eslint", "unicorn", "oxc", "import", "promise"],
   categories: {
     correctness: "error",
