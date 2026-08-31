@@ -12,5 +12,7 @@ export default defineConfig({
   },
   rules: {
     "import/no-default-export": "off",
+    "import/no-unassigned-import": "off",
+    "unicorn/no-anonymous-default-export": "off",
   },
 });

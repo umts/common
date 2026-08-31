@@ -18,7 +18,10 @@ export default defineConfig({
     restriction: "error",
   },
   rules: {
+    "eslint/no-alert": "off",
     "import/no-default-export": "off",
+    "import/no-unassigned-import": "off",
+    "unicorn/no-anonymous-default-export": "off",
     "unicorn/no-array-reduce": "off",
   },
 });
