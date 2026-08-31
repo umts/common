@@ -9,7 +9,7 @@ if [[ $# -ne 1 ]]; then
 fi
 
 target="$1"
-targets_file="${target}_targets"
+targets_file="config/${target}"
 
 # --- Verify the targets file exists ---
 if [[ ! -f "$targets_file" ]]; then
@@ -18,8 +18,8 @@ if [[ ! -f "$targets_file" ]]; then
 fi
 
 # --- Verify the source directory exists ---
-if [[ ! -d "./$target" ]]; then
-    echo "Error: Source directory './$target' not found." >&2
+if [[ ! -d "./trees/$target" ]]; then
+    echo "Error: Source directory './trees/$target' not found." >&2
     exit 1
 fi
 
@@ -28,8 +28,8 @@ while IFS= read -r directory || [[ -n "$directory" ]]; do
     # Skip empty lines and comments
     [[ -z "$directory" || "$directory" =~ ^# ]] && continue
 
-    echo "Syncing './$target' -> '../$directory'"
-    rsync -a "./$target/" "../$directory/"
+    echo "Syncing './trees/$target' -> '../$directory'"
+    rsync -a "./trees/$target/" "../$directory/"
 done < "$targets_file"
 
 echo "Done. All targets synced successfully."
