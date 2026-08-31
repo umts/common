@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# --- Validate arguments ---
+if [[ $# -ne 1 ]]; then
+    echo "Usage: $0 <target>" >&2
+    exit 1
+fi
+
+target="$1"
+targets_file="${target}_targets"
+
+# --- Verify the targets file exists ---
+if [[ ! -f "$targets_file" ]]; then
+    echo "Error: Targets file '$targets_file' not found." >&2
+    exit 1
+fi
+
+# --- Verify the source directory exists ---
+if [[ ! -d "./$target" ]]; then
+    echo "Error: Source directory './$target' not found." >&2
+    exit 1
+fi
+
+# --- Rsync to each target directory ---
+while IFS= read -r directory || [[ -n "$directory" ]]; do
+    # Skip empty lines and comments
+    [[ -z "$directory" || "$directory" =~ ^# ]] && continue
+
+    echo "Syncing './$target' -> '../$directory'"
+    rsync -a "./$target/" "../$directory/"
+done < "$targets_file"
+
+echo "Done. All targets synced successfully."
