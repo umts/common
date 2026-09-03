@@ -1,0 +1,6 @@
+/.vitest-attachments/
+/coverage/
+/dist/
+/node_modules/
+/test/__screenshots__/
+*.local
