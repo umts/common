@@ -5,6 +5,7 @@ export default defineConfig({
   ignorePatterns: [
     "app/javascript/controllers/index.js",
     "public/400.html",
+    "public/401.html",
     "public/403.html",
     "public/404.html",
     "public/406-unsupported-browser.html",
